@@ -1,0 +1,17 @@
+<h1> <%= @list.name %></h1>
+
+<ul>
+  <% @list.movies.each do |movie| %>
+    <li>
+      <p><%= movie.title %></p>
+    </li>
+  <% end %>
+</ul>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie, collection: Movie.all %>
+  <%= f.input :comment, placeholder: "What did you think about the movie?" %>
+  <%= f.submit 'Add a movie', class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to 'Go back to lists', lists_path %>
